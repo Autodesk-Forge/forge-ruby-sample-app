@@ -13,7 +13,6 @@ This sample app uses the Forge Java SDK to introduces the [OAuth](https://develo
 * Ruby version > 2.0
 
 ### Installation
-Clone this following repository.
 ```$ sudo gem install rest-client ```
 
 ### Create an App
