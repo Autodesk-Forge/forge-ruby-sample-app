@@ -7,7 +7,7 @@ This sample app uses the Forge Java SDK to introduces the [OAuth](https://develo
 * Create a bucket (an arbitrary space to store objects)
 * Upload a file to the bucket
 * Translate into SVF
-* Show translated file at the Viewer
+* Show translated file in the Viewer
 
 ### Requirements
 * Ruby version > 2.0

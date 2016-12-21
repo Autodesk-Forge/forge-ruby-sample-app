@@ -9,12 +9,14 @@ BUCKET_KEY = "forge-java-sample-app-#{CLIENT_ID.downcase}"
 FILE_NAME = 'my-elephant.obj'
 FILE_PATH = 'elephant.obj'
 
+# 2 Legged Authentication in Forge - returns the access token
 def get_access_token
   response = RestClient.post("#{API_URL}/authentication/v1/authenticate",
                              { client_id: CLIENT_ID, client_secret: CLIENT_SECRET, grant_type:'client_credentials',scope:'data:read data:write bucket:create' })
   return JSON.parse(response.body)['access_token']
 end
 
+# Create a new bucket in Forge API.
 def create_bucket(bucket_key,access_token)
   response = RestClient.post("#{API_URL}/oss/v2/buckets",
                              { bucketKey: bucket_key, policyKey:'transient'}.to_json,
@@ -22,14 +24,16 @@ def create_bucket(bucket_key,access_token)
   return response
 end
 
+# Upload a file to a previously created bucket
 def upload_file(bucket_key,file_location,file_name,access_token)
-  file_uploaded = File.new(FILE_PATH, 'rb')
+  file_uploaded = File.new(file_location, 'rb')
   response = RestClient.put("#{API_URL}/oss/v2/buckets/#{bucket_key}/objects/#{file_name}",
                              file_uploaded,
                              { Authorization: "Bearer #{access_token}", content_type:'application/octet-stream'})
   return response
 end
 
+# Translate previously uploaded file to SVF format
 def translate_to_svf(object_id,access_token)
   base_64_urn = Base64.strict_encode64(object_id)
   response = RestClient.post("#{API_URL}/modelderivative/v2/designdata/job",
@@ -52,6 +56,7 @@ def translate_to_svf(object_id,access_token)
   return response
 end
 
+# Poll the status of the job until it's done
 def verify_job_complete(base_64_urn,access_token)
   is_complete = false
 
@@ -71,6 +76,7 @@ def verify_job_complete(base_64_urn,access_token)
   return response
 end
 
+# Puts the url of the viewer for the user to open.
 def open_viewer(urn,access_token)
   path = File.expand_path(File.dirname(__FILE__))
   url = "file://#{path}/viewer.html?token=#{access_token}&urn=#{urn}"
