@@ -81,7 +81,7 @@ def open_viewer(urn,access_token)
   path = File.expand_path(File.dirname(__FILE__))
   url = "file://#{path}/viewer.html?token=#{access_token}&urn=#{urn}"
   text_to_print_in_color = "Please open the following url in your favorite browser:\n#{url}"
-  puts("\e[44m#{text_to_print_in_color}\e[0m")
+  puts("\e[7m#{text_to_print_in_color}\e[27m")
 
 end
 

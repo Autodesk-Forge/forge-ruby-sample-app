@@ -17,7 +17,7 @@ This sample app uses the Forge Java SDK to introduces the [OAuth](https://develo
 
 ### Create an App
 
-[Create an app](https://developer.autodesk.com/en/docs/oauth/v2/tutorials/create-app/) on the Forge Developer portal, and ensure that you select the Data Management API. Note the client ID and client secret.
+[Create an app](https://developer.autodesk.com/en/docs/oauth/v2/tutorials/create-app/) on the Forge Developer portal, and ensure that you select the Data Management and Model Derivative API. Note the client ID and client secret.
 
 ### Configure the Parameters
 
