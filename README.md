@@ -29,5 +29,8 @@ Open the *config.rb* file, and replace `CLIENT_ID` and `CLIENT_SECRET` with the 
 
 ### Run the App
 ```$ ruby app.rb ```
+
+![thumbnail](/default.png)
+
 ## Support
 forge.help@autodesk.com
