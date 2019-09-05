@@ -60,7 +60,7 @@
 	function onDocumentLoadSuccess(doc) {
 
 		// A document contains references to 3D and 2D viewables.
-		var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+		var viewables = doc.getRoot().search({'type':'geometry'}, true);
 		if (viewables.length === 0) {
 			console.error('Document contains no viewables.');
 			return;
@@ -70,7 +70,7 @@
 		var initialViewable = viewables[0];
 		var svfUrl = doc.getViewablePath(initialViewable);
 		var modelOptions = {
-			sharedPropertyDbPath: doc.getPropertyDbPath()
+			//sharedPropertyDbPath: doc.getPropertyDbPath()
 		};
 
 		var viewerDiv = document.getElementById('MyViewerDiv');
